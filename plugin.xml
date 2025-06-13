@@ -4,9 +4,9 @@
     <js-module name="IntentShim" src="www/IntentShim.js">
         <clobbers target="intentShim" />
     </js-module>
-    
+
     <hook type="after_prepare" src="hooks/after_prepare.js" />
-	
+
 	<!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -15,19 +15,19 @@
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
-        <config-file target="AndroidManifest.xml" platform="android" parent="/manifest/application/activity" mode="merge">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity[@android:name='MainActivity']">
             <intent-filter>
                 <action android:name="com.darryncampbell.cordova.plugin.intent.ACTION" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </config-file>
-        <config-file target="AndroidManifest.xml" platform="android" parent="/manifest" mode="merge">
+        <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
-        <config-file target="AndroidManifest.xml" platform="android" parent="/manifest" mode="merge">
+        <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
         </config-file>
-        <config-file target="AndroidManifest.xml" platform="android" parent="/manifest/application" mode="merge">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <provider
                 android:name="com.darryncampbell.cordova.plugin.intent.CordovaPluginIntentFileProvider"
                 android:authorities="${applicationId}.darryncampbell.cordova.plugin.intent.fileprovider"
@@ -43,5 +43,5 @@
 		<resource-file src="src/android/res/xml/provider_paths.xml" target="res/xml/provider_paths.xml"/>
 		<framework src="androidx.core:core:1.1.0" />
     </platform>
-	
+
 </plugin>
